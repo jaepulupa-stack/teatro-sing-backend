@@ -241,17 +241,33 @@ async function confirmarReserva() {
             throw new Error("Error del servidor");
         }
 
-        const datos = await respuesta.json();
+                const datos = await respuesta.json();
 
-        alert(
-            "RESERVA CONFIRMADA\n\n" +
-            "Cliente: " + nombre + "\n\n" +
-            "Obra: " + obra + "\n\n" +
-            "Cantidad de boletos: " + asientosSeleccionados.length + "\n\n" +
-            "Asientos: " + asientosSeleccionados.join(", ") + "\n\n" +
-            "TOTAL: $" + total.toFixed(2) + "\n\n" +
-            "Tus códigos QR ya fueron generados y guardados."
-        );
+        const contenedor = document.getElementById("contenedorQRs");
+        contenedor.innerHTML = "";
+
+        datos.asientos.forEach(function (asiento) {
+            const caja = document.createElement("div");
+            caja.style.background = "#fff";
+            caja.style.padding = "15px";
+            caja.style.borderRadius = "10px";
+            caja.style.width = "200px";
+
+            const titulo = document.createElement("p");
+            titulo.style.color = "#000";
+            titulo.style.fontWeight = "bold";
+            titulo.textContent = asiento.sector + " - " + asiento.numero;
+
+            const canvas = document.createElement("canvas");
+
+            caja.appendChild(titulo);
+            caja.appendChild(canvas);
+            contenedor.appendChild(caja);
+
+                        new QRious({ element: canvas, value: asiento.codigoQR, size: 160 });
+        });
+
+        document.getElementById("modalQR").style.display = "block";
 
         const botones = document.querySelectorAll(".asientos button");
 

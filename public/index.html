@@ -263,8 +263,14 @@
 
     </footer>
 
-    <script src="script.js"></script>
+<div id="modalQR" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; overflow-y:auto; text-align:center; padding:30px;">
+    <h2 style="color:#d4af37;">Tus Boletos</h2>
+    <div id="contenedorQRs" style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;"></div>
+    <button onclick="document.getElementById('modalQR').style.display='none'" style="margin-top:20px; padding:10px 30px; background:#d4af37; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Cerrar</button>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="script.js"></script>
 </body>
 
 </html>
