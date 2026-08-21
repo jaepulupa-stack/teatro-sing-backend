@@ -258,13 +258,31 @@ async function confirmarReserva() {
             titulo.style.fontWeight = "bold";
             titulo.textContent = asiento.sector + " - " + asiento.numero;
 
-            const canvas = document.createElement("canvas");
+                        const canvas = document.createElement("canvas");
+
+            const botonDescargar = document.createElement("button");
+            botonDescargar.textContent = "⬇ Descargar";
+            botonDescargar.style.marginTop = "10px";
+            botonDescargar.style.padding = "8px 15px";
+            botonDescargar.style.background = "#d4af37";
+            botonDescargar.style.border = "none";
+            botonDescargar.style.borderRadius = "5px";
+            botonDescargar.style.cursor = "pointer";
+            botonDescargar.style.fontWeight = "bold";
+
+            botonDescargar.onclick = function () {
+                const link = document.createElement("a");
+                link.href = canvas.toDataURL("image/png");
+                link.download = "boleto-" + asiento.sector + "-" + asiento.numero + ".png";
+                link.click();
+            };
 
             caja.appendChild(titulo);
             caja.appendChild(canvas);
+            caja.appendChild(botonDescargar);
             contenedor.appendChild(caja);
 
-                        new QRious({ element: canvas, value: asiento.codigoQR, size: 160 });
+            new QRious({ element: canvas, value: asiento.codigoQR, size: 160 });
         });
 
         document.getElementById("modalQR").style.display = "block";
