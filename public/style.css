@@ -1,0 +1,540 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #120707;
+    color: white;
+}
+
+header {
+    background: #090303;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #d4af37;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d4af37;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #d4af37;
+}
+
+.inicio {
+    min-height: 600px;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 0, 0, 0.65),
+            rgba(20, 0, 0, 0.65)
+        ),
+        url("imagenes/principal.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.inicio-contenido {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.inicio h1 {
+    font-size: 70px;
+    color: #d4af37;
+    margin-bottom: 20px;
+}
+
+.inicio h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.inicio p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.boton {
+    display: inline-block;
+    background: #8b0000;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid #d4af37;
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background: #d4af37;
+    color: #160505;
+}
+
+#cartelera {
+    padding: 80px 8%;
+    background: #1b0909;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 42px;
+    color: #d4af37;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cartelera {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.obra {
+    background: #260d0d;
+    border: 1px solid #5c3d0e;
+    border-radius: 15px;
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.obra:hover {
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(212, 175, 55, 0.35);
+
+    border-color: #d4af37;
+}
+
+.imagen-obra {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.obra h3 {
+    color: #d4af37;
+    font-size: 25px;
+    text-align: center;
+    margin: 20px 15px 10px;
+}
+
+.obra p {
+    color: #eeeeee;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.obra .boton {
+    display: block;
+    width: 80%;
+    margin: 0 auto 25px;
+    text-align: center;
+    padding: 12px;
+}
+
+.reserva {
+    padding: 70px 8%;
+    background: #120707;
+}
+
+.contenedor-reserva {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.escenario {
+    background: #d4af37;
+    color: black;
+    text-align: center;
+
+    padding: 15px;
+    margin: 30px 0;
+
+    border-radius: 50%;
+
+    font-weight: bold;
+}
+
+.sectores {
+    width: 100%;
+}
+
+.sector {
+    margin-bottom: 40px;
+}
+
+.sector h3 {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+}
+
+.sector-vip {
+    background: #d4af37;
+    color: #000;
+}
+
+.sector-preferencial {
+    background: #1e5aa8;
+    color: white;
+}
+
+.sector-general {
+    background: #267326;
+    color: white;
+}
+
+.asientos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(10, minmax(35px, 1fr));
+
+    gap: 6px;
+
+    max-height: 400px;
+
+    overflow-y: auto;
+
+    padding: 15px;
+
+    background: #100404;
+
+    border-radius: 10px;
+
+    border: 1px solid #3d1b1b;
+}
+
+.asientos button {
+    padding: 8px 3px;
+
+    background: #267326;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+.asientos button:hover {
+    transform: scale(1.08);
+}
+
+.asientos button.seleccionado {
+    background: #d4af37;
+
+    color: black;
+}
+
+.asientos button.ocupado {
+    background: #8b0000;
+
+    color: white;
+
+    cursor: not-allowed;
+
+    opacity: 0.7;
+}
+
+.asientos::-webkit-scrollbar {
+    width: 8px;
+}
+
+.asientos::-webkit-scrollbar-track {
+    background: #080202;
+    border-radius: 10px;
+}
+
+.asientos::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 10px;
+}
+
+.leyenda {
+    margin-top: 25px;
+
+    display: flex;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.leyenda div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.leyenda span {
+    display: inline-block;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 4px;
+}
+
+.formulario {
+    background: #210909;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 1px solid #d4af37;
+}
+
+.formulario h3 {
+    color: #d4af37;
+
+    margin-bottom: 20px;
+
+    font-size: 25px;
+}
+
+.formulario label {
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+}
+
+.formulario input,
+.formulario select {
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 7px;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 16px;
+}
+
+.formulario hr {
+    margin: 25px 0;
+
+    border: none;
+
+    border-top: 1px solid #5c3d0e;
+}
+
+.formulario h2 {
+    margin: 25px 0;
+
+    color: #d4af37;
+}
+
+.confirmar {
+    width: 100%;
+
+    padding: 15px;
+
+    background: #8b0000;
+
+    color: white;
+
+    border: 1px solid #d4af37;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.confirmar:hover {
+    background: #d4af37;
+
+    color: black;
+}
+
+footer {
+    text-align: center;
+
+    padding: 40px;
+
+    background: #080202;
+
+    border-top: 2px solid #d4af37;
+}
+
+footer h3 {
+    color: #d4af37;
+
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #cccccc;
+
+    margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 8px;
+    }
+
+    .inicio h1 {
+        font-size: 50px;
+    }
+
+    .cartelera {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contenedor-reserva {
+        grid-template-columns: 1fr;
+    }
+
+    .asientos {
+        grid-template-columns:
+            repeat(8, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 18px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+
+        margin: 5px;
+
+        font-size: 16px;
+    }
+
+    .inicio {
+        min-height: 500px;
+    }
+
+    .inicio h1 {
+        font-size: 40px;
+    }
+
+    .inicio h2 {
+        font-size: 24px;
+    }
+
+    .inicio p {
+        font-size: 17px;
+    }
+
+    .titulo {
+        font-size: 32px;
+    }
+
+    .cartelera {
+        grid-template-columns: 1fr;
+    }
+
+    .imagen-obra {
+        height: 250px;
+    }
+
+    .reserva {
+        padding: 50px 5%;
+    }
+
+    .asientos {
+        grid-template-columns:
+            repeat(6, 1fr);
+
+        gap: 5px;
+
+        padding: 10px;
+    }
+
+    .asientos button {
+        font-size: 10px;
+
+        padding: 7px 2px;
+    }
+
+    .sector h3 {
+        font-size: 18px;
+    }
+}

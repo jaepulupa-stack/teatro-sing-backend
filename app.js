@@ -9,6 +9,14 @@ const PORT = 3000;
 
 // Permitir que el servidor reciba datos en formato JSON
 app.use(express.json());
+app.use(express.static('public'));
+
+const reservasRouter = require('./routes/reservas');
+const validarRouter = require('./routes/validar');
+
+app.use('/api', reservasRouter);
+app.use('/api', validarRouter);
+
 
 // Conexión a MongoDB Atlas // NUEVO
 mongoose.connect(process.env.MONGO_URI)

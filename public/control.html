@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Acceso - Teatro Sing</title>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<style>
+    body {
+        background: #1a0e0e;
+        color: #f5e6c8;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+    h1 {
+        color: #d4af37;
+    }
+    #reader {
+        width: 350px;
+        margin: 20px auto;
+        border: 2px solid #d4af37;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .manual {
+        margin-top: 30px;
+    }
+    input {
+        padding: 10px;
+        width: 280px;
+        border-radius: 5px;
+        border: none;
+    }
+    button {
+        padding: 10px 20px;
+        background: #d4af37;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    #resultado {
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .valido {
+        background: #1e5c2f;
+        color: white;
+    }
+    .invalido {
+        background: #7a1f1f;
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+<h1>🎭 Control de Acceso - Teatro Sing</h1>
+<p>Escanea el código QR del boleto en la entrada</p>
+
+<div id="reader"></div>
+
+<div class="manual">
+    <p>¿No funciona la cámara? Ingresa el código manualmente:</p>
+    <input type="text" id="codigoManual" placeholder="Pega o escribe el código QR">
+    <button onclick="validarManual()">Validar</button>
+</div>
+
+<div id="resultado"></div>
+
+<script>
+    async function validarCodigo(codigo) {
+        const resultadoDiv = document.getElementById("resultado");
+
+        try {
+            const respuesta = await fetch("/api/validar-qr", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ codigoQR: codigo })
+            });
+
+            const datos = await respuesta.json();
+
+            resultadoDiv.style.display = "block";
+
+            if (datos.valido) {
+                resultadoDiv.className = "valido";
+                resultadoDiv.innerHTML =
+                    "✅ ACCESO CONCEDIDO<br>" +
+                    "Cliente: " + datos.cliente + "<br>" +
+                    "Sector: " + datos.sector;
+            } else {
+                resultadoDiv.className = "invalido";
+                resultadoDiv.innerHTML = "❌ " + datos.mensaje;
+            }
+
+        } catch (error) {
+            resultadoDiv.style.display = "block";
+            resultadoDiv.className = "invalido";
+            resultadoDiv.innerHTML = "❌ Error de conexión con el servidor";
+        }
+    }
+
+    function validarManual() {
+        const codigo = document.getElementById("codigoManual").value.trim();
+        if (codigo === "") {
+            alert("Ingresa un código.");
+            return;
+        }
+        validarCodigo(codigo);
+        document.getElementById("codigoManual").value = "";
+    }
+
+    function onScanSuccess(decodedText) {
+        validarCodigo(decodedText);
+    }
+
+    function onScanFailure() {
+        // se ignora, se dispara constantemente mientras no detecta nada
+    }
+
+    const html5QrCode = new Html5Qrcode("reader");
+    html5QrCode.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        onScanSuccess,
+        onScanFailure
+    ).catch(function (err) {
+        document.getElementById("reader").innerHTML =
+            "<p style='padding:20px;'>No se pudo acceder a la cámara. Usa el campo manual de abajo.</p>";
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teatro Sing</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            TEATRO SING
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#cartelera">Cartelera</a>
+            <a href="#reserva">Reserva</a>
+        </nav>
+
+    </header>
+
+    <section id="inicio" class="inicio">
+
+        <div class="inicio-contenido">
+
+            <h1>Teatro Sing</h1>
+
+            <h2>
+                Vive el espectáculo, vive la emoción
+            </h2>
+
+            <p>
+                Disfruta las mejores obras teatrales
+                y reserva tus boletos de manera rápida
+                y sencilla.
+            </p>
+
+            <a href="#cartelera" class="boton">
+                Ver Cartelera
+            </a>
+
+        </div>
+
+    </section>
+
+    <section id="cartelera">
+
+        <h2 class="titulo">
+            Nuestra Cartelera
+        </h2>
+
+        <div class="cartelera">
+
+            <div class="obra">
+
+                <img src="imagenes/romeo.jpg" alt="Romeo y Julieta" class="imagen-obra">
+
+                <h3>
+                    Romeo y Julieta
+                </h3>
+
+                <p>
+                    Una historia de amor, pasión y tragedia
+                    que ha conquistado generaciones.
+                </p>
+
+                <a href="#reserva" class="boton" onclick="seleccionarObra('Romeo y Julieta', 15)">
+                    Reservar boletos
+                </a>
+
+            </div>
+
+            <div class="obra">
+
+                <img src="imagenes/obra2.jpg" alt="El Fantasma de la Ópera" class="imagen-obra">
+
+                <h3>
+                    El Fantasma de la Ópera
+                </h3>
+
+                <p>
+                    Misterio, música y romance se encuentran
+                    en una historia inolvidable.
+                </p>
+
+                <a href="#reserva" class="boton" onclick="seleccionarObra('El Fantasma de la Ópera', 20)">
+                    Reservar boletos
+                </a>
+
+            </div>
+
+            <div class="obra">
+
+                <img src="imagenes/obra3.jpg" alt="Don Juan" class="imagen-obra">
+
+                <h3>
+                    Don Juan
+                </h3>
+
+                <p>
+                    Una obra llena de romance, aventuras
+                    y grandes emociones.
+                </p>
+
+                <a href="#reserva" class="boton" onclick="seleccionarObra('Don Juan', 18)">
+                    Reservar boletos
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="reserva" class="reserva">
+
+        <h2 class="titulo">
+            Reservar tu boleto
+        </h2>
+
+        <div class="contenedor-reserva">
+
+            <div>
+
+                <h3 id="obraSeleccionada">
+                    Seleccione una obra
+                </h3>
+
+                <p>
+                    Precio por boleto:
+                    $<span id="precio">0.00</span>
+                </p>
+
+                <div class="escenario">
+                    ESCENARIO
+                </div>
+
+                <div class="sectores">
+
+                    <div class="sector">
+                        <h3 class="sector-vip">VIP - 500 asientos</h3>
+
+                        <div id="asientosVIP" class="asientos"></div>
+                    </div>
+
+                    <div class="sector">
+                        <h3 class="sector-preferencial">
+                            PREFERENCIAL - 1.000 asientos
+                        </h3>
+
+                        <div id="asientosPreferencial" class="asientos"></div>
+                    </div>
+
+                    <div class="sector">
+                        <h3 class="sector-general">
+                            GENERAL - 1.500 asientos
+                        </h3>
+
+                        <div id="asientosGeneral" class="asientos"></div>
+                    </div>
+
+                </div>
+
+                <div class="leyenda">
+
+                    <span>
+                        🟢 Disponible
+                    </span>
+
+                    <span>
+                        🔴 Ocupado
+                    </span>
+
+                    <span>
+                        🟡 Seleccionado
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="formulario">
+
+                <h3>
+                    Datos del cliente
+                </h3>
+
+                <label for="nombre">
+                    Nombre completo
+                </label>
+
+                <input type="text" id="nombre" placeholder="Ingrese su nombre">
+
+                <label for="telefono">
+                    Teléfono
+                </label>
+
+                <input type="tel" id="telefono" placeholder="Ingrese su teléfono">
+
+                <label for="correo">
+                    Correo electrónico
+                </label>
+
+                <input type="email" id="correo" placeholder="Ingrese su correo">
+
+                <hr>
+
+                <h3>
+                    Obra
+                </h3>
+
+                <p id="resumenObra">
+                    Ninguna obra seleccionada
+                </p>
+
+                <h3>
+                    Asientos
+                </h3>
+
+                <p id="listaAsientos">
+                    Ninguno
+                </p>
+
+                <h2>
+                    Total:
+                    $<span id="total">0.00</span>
+                </h2>
+
+                <button type="button" class="confirmar" onclick="confirmarReserva()">
+                    Confirmar Reserva
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+
+        <h3>
+            Teatro Sing
+        </h3>
+
+        <p>
+            Vive el espectáculo, vive la emoción.
+        </p>
+
+        <p>
+            © 2026 TEATRO SING
+        </p>
+
+        <p>
+            "El telón se abre y la magia comienza"
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
